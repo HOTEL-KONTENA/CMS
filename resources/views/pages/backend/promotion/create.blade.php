@@ -70,7 +70,7 @@
 								<div class="form-group">
 									<label>Cover Image</label>
 									<br />
-									<img id="preview_cover" src="{{ asset('img/noimage.png') }}" class="normal pt-4 pb-4 pr-4 pl-0" alt="logo">
+									<img id="cover_image" src="{{ asset('img/noimage.png') }}" class="normal pt-4 pb-4 pr-4 pl-0" alt="cover image">
 									<br />
 									{{  Form::file('cover_image', [
 										'class' => 'form-control image-send',

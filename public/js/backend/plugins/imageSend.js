@@ -85,8 +85,10 @@ window.imageSend = new function(){
 			unlockInput(input);
 		});
 		upl.defineOnError(function(resp){
-            alert("Cant upload image, please try again. \nError : " + resp.statusText + " (" + resp.status + ")");
-			unlockInput(input);
+			if(resp.status !== "200") {
+	            alert("Cant upload image, please try again. \nError : " + resp.statusText + " (" + resp.status + ")");
+				unlockInput(input);
+			}
 		});
 		upl.defineOnLoading(function(percentage){
             console.log(percentage);
