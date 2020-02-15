@@ -27,7 +27,8 @@
 				<div class="col-12">
 
 					{!! Form::open([
-						'url' => $page_datas->id ? route('backend.promotion.update', ['id' => $page_datas->id]) : route('backend.promotion.store')
+						'url' => $page_datas->id ? route('backend.promotion.update', ['id' => $page_datas->id]) : route('backend.promotion.store'),
+						'files' => true
 					])!!}
 						{{ Form::token() }}
 						{{ $page_datas->datas ? method_field('PUT') : ''}}
