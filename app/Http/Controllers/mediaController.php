@@ -25,7 +25,7 @@ class mediaController extends Controller
         $s3->putObject(array(
             'Bucket'     => 'basilhotel',
             'Key'        => "kontena/" . $folder .  "/" . $filename.'.'.$file->getClientOriginalExtension(),
-            'Body'       => $file,
+            'SourceFile' => $file,
             'ACL'        => 'public-read',
         ));
 
