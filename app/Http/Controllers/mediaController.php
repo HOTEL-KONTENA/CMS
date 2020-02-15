@@ -11,9 +11,6 @@ class mediaController extends Controller
 {
     private function upload($file, $folder = null, $filename = null){
 
-        // get file
-        $file   = Input::file('cover_image');
-
         // S3: Do Space uploader
         $s3 = AWS::createClient('s3');
         $s3->putObject(array(
@@ -38,7 +35,7 @@ class mediaController extends Controller
         // $request->validate([
         //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
-        $result = $this->upload($request, "promotion", date("Y/m/d/") .time());
+        $result = $this->upload($request->file('image'), "promotion", date("Y/m/d/") .time());
 
         return Response::json([
             'url' => $result
@@ -49,7 +46,7 @@ class mediaController extends Controller
         // $request->validate([
         //     'image' => 'required|image|mimes:png|max:2048',
         // ]);
-        $result = $this->upload($request, 'article', date("Y/m/d/") .time());
+        $result = $this->upload($request->file('image'), 'article', date("Y/m/d/") .time());
 
         return Response::json([
             'url' => $result
