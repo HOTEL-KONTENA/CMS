@@ -3,7 +3,7 @@ window.imageSend = new function(){
 	/* Settings */
 	var debug = true;
 	var class_name = "image-send";
-	var input_name = "image-url";
+	var input_name = "image-data";
 	var csrf_token = "";
 	var preload_var = "imagePreload";
 	var url = 'https://thunderlab.id/dashboard/media/uploaders';
@@ -81,7 +81,7 @@ window.imageSend = new function(){
 		var upl = uploader;
 		upl.defineOnSuccess(function(resp){
 			drawImage(input);
-			input.parentNode.getElementsByClassName(input_name)[0].setAttribute('value', resp.url);
+			input.getElementsByClassName(input_name)[0].setAttribute('value', resp.url);
 			unlockInput(input);
 		});
 		upl.defineOnError(function(resp){
@@ -90,7 +90,7 @@ window.imageSend = new function(){
 				unlockInput(input);
 			}else{
 				drawImage(input);
-				input.parentNode.getElementsByClassName(input_name)[0].setAttribute('value', resp.url);
+				input.getElementsByClassName(input_name)[0].setAttribute('value', resp.url);
 				unlockInput(input);
 			}
 		});

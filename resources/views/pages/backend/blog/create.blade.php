@@ -27,7 +27,8 @@
 				<div class="col-12">
 
 					{!! Form::open([
-						'url' => $page_datas->id ? route('backend.blog.update', ['id' => $page_datas->id]) : route('backend.blog.store')
+						'url' => $page_datas->id ? route('backend.blog.update', ['id' => $page_datas->id]) : route('backend.blog.store'),
+						'files' => true
 					])!!}
 						{{ $page_datas->datas ? method_field('PUT') : ''}}
 						{{ Form::token() }}
@@ -67,22 +68,12 @@
                             </div>
 							<div class="col-12 col-sm-4">
 								<div class="form-group">
-									<label>Cover Image</label>
-									<br/>
-									<img id="cover_image" src="{{ asset('img/noimage.png') }}" class="normal pr-4 pl-0" alt="cover image">
-									<br />
-									{{-- load data from old input --}}
-									{{  Form::file('cover_image', [
-										'class' => 'form-control image-send',
-										"imagePreload" => ( $page_datas->id ? $page_datas->datas->cover_image : null )
-									]) }}
-									{{  Form::hidden('photo_url', $page_datas->id ? $page_datas->datas->cover_image : null, ['class' => 'form-control image-url']) }}
-									<small class="text-secondary"><i> *rasio gambar 4:3, ukuran file maks 200kb</i></small>
-									<a href="#" class="btn btn-sm btn-outline-primary">Change</a>
+								 <label>Cover Image</label>
+								  <input type='file' id="imgInp" name="image" />
+								  <img id="blah" src="{{ $page_datas->id ? $page_datas->datas->cover_image : asset('img/noimage.png') }}" alt="your image" />
 								</div>
 							</div>
 						</div>
-
 						<!-- <div class="row">
 							<div class="col-12 pt-3">
 								<div class="form-group">
@@ -111,39 +102,24 @@
 
 
 @push('scripts')
-	imageSend.setCsrfToken('{{ csrf_token() }}');
-	imageSend.setUrl('{{ route('backend.media.upload.article') }}');
+	function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    
+	    reader.onload = function(e) {
+	      $('#blah').attr('src', e.target.result);
+	    }
+	    
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
+
+	$("#imgInp").change(function() {
+	  readURL(this);
+	});
 
     $('#date_picker').datetimepicker({
         inline: true,
         sideBySide: true
     }).data("DateTimePicker").format('DD-MM-YYYY HH:mm').clear().hide();
-
-	var quill = new Quill('#editor', {
-        theme: 'snow',
-        placeHolder: 'Enter your blog content here'
-	});
-
-	var blogPreload = '{!! old('content') ? old('content') : ($page_datas->datas && $page_datas->datas->content ? $page_datas->datas->content : null) !!}';
-	if (blogPreload) {
-		quill.root.innerHTML = blogPreload;
-	}
-
-	$('form').on('submit', function(e){
-        <!-- e.preventDefault(); -->
-
-		var length = quill.getLength();
-		if (length > 1) {
-			<!-- var tmp = JSON.stringify(quill.getContents()); -->
-            <!-- var description = document.querySelector('input[name=content]'); -->
-			$('#content').val(quill.container.firstChild.innerHTML);
-            <!-- console.log(quil.container.firstChild.innerHTML) -->
-		}else{
-			$('#content').val(null);
-		}
-
-
-        // submit
-        return true
-	})
 @endpush

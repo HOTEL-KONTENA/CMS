@@ -70,7 +70,7 @@ class promotionController extends Controller
         $promotion['title'] = Input::get('title');
         $promotion['start_at'] = $s_at;
         $promotion['end_at'] = $e_at;
-        $promotion['cover_image'] = Input::get('photo_url');
+        $promotion['cover_image'] = $this->upload($request->file('image'), 'article', date("Y/m/d/") .time());
         $promotion['description'] = Input::get('description');
 
         // save data

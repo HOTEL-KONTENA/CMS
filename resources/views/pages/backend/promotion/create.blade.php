@@ -68,19 +68,9 @@
 							</div>
 							<div class="col-md-5">
 								<div class="form-group">
-									<label>Cover Image</label>
-									<br />
-									<img id="cover_image" src="{{ asset('img/noimage.png') }}" class="normal pt-4 pb-4 pr-4 pl-0" alt="cover image">
-									<br />
-									{{  Form::file('cover_image', [
-										'class' => 'form-control image-send',
-										"imagePreload" => ( $page_datas->id ? $page_datas->datas->cover_image : null )
-									]) }}
-									{{  Form::hidden('photo_url', $page_datas->id ? $page_datas->datas->cover_image : null, ['class' => 'form-control image-url']) }}
-									<small class="text-secondary">
-										<i> *rasio gambar 16:9, lebar gambar min 1920px, ukuran file maks 400kb</i>
-									</small>
-									<a href="#" class="btn btn-sm btn-outline-primary">Change</a>
+								 <label>Cover Image</label>
+								  <input type='file' id="imgInp" name="image" />
+								  <img id="blah" src="{{ $page_datas->id ? $page_datas->datas->cover_image : asset('img/noimage.png') }}" alt="your image" />
 								</div>
 							</div>
 
@@ -104,8 +94,21 @@
 
 
 @push('scripts')
-	imageSend.setCsrfToken('{{ csrf_token() }}');
-	imageSend.setUrl('{{ route('backend.media.upload.promotion') }}');
+	function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    
+	    reader.onload = function(e) {
+	      $('#blah').attr('src', e.target.result);
+	    }
+	    
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
+
+	$("#imgInp").change(function() {
+	  readURL(this);
+	});
 
     $('#picker_end').datetimepicker({
         inline: true,

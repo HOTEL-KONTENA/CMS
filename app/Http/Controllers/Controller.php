@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Request, Redirect;
+use Aws\S3\S3Client;
 
 class Controller extends BaseController
 {
@@ -89,5 +90,30 @@ class Controller extends BaseController
 	}
 	private function getSorting(){
 		$this->page_datas->sorting   = Request::input('sorting');
-	}  	
+	} 
+
+	protected function upload($file, $folder = null, $filename = null){
+
+        // S3: Do Space uploader
+        $s3     = new S3Client([
+            'version'           => 'latest',
+            'region'            => 'sgp1',
+            'endpoint'          => 'https://sgp1.digitaloceanspaces.com',
+            'credentials'       => [
+                'key'    => env('DO_ACCESS_KEY_ID'),
+                'secret' => env('DO_SECRET_ACCESS_KEY'),
+            ],
+        ]);
+
+        $s3->putObject(array(
+            'Bucket'     => 'basilhotel',
+            'Key'        => "kontena/" . $folder .  "/" . $filename.'.'.$file->getClientOriginalExtension(),
+            'SourceFile' => $file,
+            'ACL'        => 'public-read',
+        ));
+
+        // return url
+        return 'https://sgp1.digitaloceanspaces.com/basilhotel/kontena/' . $folder .  '/' . $filename.'.'.$file->getClientOriginalExtension();
+    }
+
 }

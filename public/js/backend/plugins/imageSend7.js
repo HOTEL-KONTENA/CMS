@@ -85,7 +85,7 @@ window.imageSend = new function(){
 			unlockInput(input);
 		});
 		upl.defineOnError(function(resp){
-			if(resp.status !== "200") {
+			if(resp.status !== 200) {
 	            alert("Cant upload image, please try again. \nError : " + resp.statusText + " (" + resp.status + ")");
 				unlockInput(input);
 			}else{

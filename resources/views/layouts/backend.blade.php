@@ -33,10 +33,10 @@
         <script src={{ asset('js/backend/plugins/datePicker.js') }}></script>
 
         {{-- quil --}}
-        <script src={{ asset('js/backend/plugins/quil.js') }}></script>
+        <!-- <script src={{ asset('js/backend/plugins/quil.js') }}></script> -->
 
         {{-- ajax image upload --}}
-        <script src={{ url('js/backend/plugins/imageSend4.js') }}></script>
+        <!-- <script src={{ url('js/backend/plugins/imageSend4.js') }}></script> -->
 
         <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
         <script src={{ asset('js/backend/black-dashboard.min.js') }}></script>
