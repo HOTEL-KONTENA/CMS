@@ -1,0 +1,3 @@
+[submodule "resources/views/HOME-KONTENA"]
+	path = resources/views/HOME-KONTENA
+	url = https://github.com/HOTEL-KONTENA/HOME-KONTENA

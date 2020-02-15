@@ -4,7 +4,7 @@
             <ul>
                 <li>
                     <a href="#">
-                        Thunder CMS V1.0.0
+                        Kontena CMS V1.0.0
                     </a>
                 </li>
             </ul>

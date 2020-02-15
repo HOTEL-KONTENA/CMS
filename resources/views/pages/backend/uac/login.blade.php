@@ -14,7 +14,7 @@
                                 <div class="block block-three"></div>
                                 <div class="block block-four"></div>
                                 <a href="#">
-                                    <h4 class="title">Thunder CMS</h4>
+                                    <h4 class="title">Kontena CMS</h4>
                                 </a>
                                 </br>
                                 <p class="description">

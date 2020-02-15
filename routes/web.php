@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-    return view('home');
+    return view('HOME-KONTENA.dist.index');
 });
 
 Route::group(['prefix' => 'cms'], function(){
