@@ -18,8 +18,8 @@ class mediaController extends Controller
         $s3 = AWS::createClient('s3');
         $s3->putObject(array(
             'Bucket'     => env('AWS_BUCKET'),
-            'Key'        => "kontena/" . $folder .  "/" . $filename,
-            'SourceFile' => $file->image,
+            'Key'        => "kontena/" . $folder .  "/" . $filename->getClientOriginalExtension(),
+            'SourceFile' => $file,
             'ACL'        => 'public-read'
         ));
 
