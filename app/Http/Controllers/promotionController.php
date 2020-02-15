@@ -70,7 +70,7 @@ class promotionController extends Controller
         $promotion['title'] = Input::get('title');
         $promotion['start_at'] = $s_at;
         $promotion['end_at'] = $e_at;
-        $promotion['cover_image'] = Input::get('cover_image');
+        $promotion['cover_image'] = Input::get('photo_url');
         $promotion['description'] = Input::get('description');
 
         // save data

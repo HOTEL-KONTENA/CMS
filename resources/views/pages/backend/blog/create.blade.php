@@ -76,6 +76,7 @@
 										'class' => 'form-control image-send',
 										"imagePreload" => ( $page_datas->id ? $page_datas->datas->cover_image : null )
 									]) }}
+									{{  Form::hidden('photo_url', $page_datas->id ? $page_datas->datas->cover_image : null, ['class' => 'form-control image-url']) }}
 									<small class="text-secondary"><i> *rasio gambar 4:3, ukuran file maks 200kb</i></small>
 									<a href="#" class="btn btn-sm btn-outline-primary">Change</a>
 								</div>

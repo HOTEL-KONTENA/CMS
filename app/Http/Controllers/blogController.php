@@ -63,7 +63,7 @@ class blogController extends Controller
         // fill input
         $blog['user_id'] = Auth::user()->id;
         $blog['title'] = Input::get('title');
-        $blog['cover_image'] = Input::get('cover_image');
+        $blog['cover_image'] = Input::get('photo_url');
         $published_at = date_create(Input::get('published_at'));
         $blog['published_at'] = date_format($published_at,"Y-m-d H:i:s");
         // $blog['content'] = Input::get('content');
